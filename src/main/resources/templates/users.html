@@ -94,7 +94,39 @@
         </div>
     </div>
 
+    <td>
+
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+
+                <form id="deleteForm">
+                    <div  class="p-3 mb-2  bg-secondary text-white">User Detail </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="inputName1" placeholder="Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp"
+                               placeholder="email">
+                        <div id="emailHelp1" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="inputAddress1" placeholder="Address">
+                    </div>
+                    <button id="deleteSubmit" type="submit" class="btn btn-primary">Delete</button>
+                </form>
+
+                <div>  <button id="cancelSubmit" type="button" class="btn btn-danger">Cancel</button></div>
+
+            </div>
+
+        </div>
+
+    </td>
+
+
 </div>
 <script src="../static/script.js"></script>
 </body>
-</html>
+</html>`

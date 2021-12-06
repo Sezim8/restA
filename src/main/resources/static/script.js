@@ -31,15 +31,21 @@ const editUserForm = document.getElementById("editForm");
 const url = 'http://localhost:7712';
 const userList = document.getElementById("tableUser");
 const deleteBtn = document.getElementById("delete-btn");
-
+const cancelSubmit =document.getElementById("cancelSubmit");
 const btnSubmit = document.getElementById("btnSubmit");
 let userTable = document.getElementById("userTable");
+const deleteForm =document.getElementById("deleteForm");
 let data = []
 
 let inputName = document.getElementById("inputName");
 let inputAddress = document.getElementById("inputAddress");
 let inputEmail = document.getElementById("inputEmail");
-console.log(editUserForm[0].value);
+
+let inputNameD = document.getElementById("inputName1");
+let inputAddressD = document.getElementById("inputAddress1");
+let inputEmailD = document.getElementById("inputEmail1");
+
+
 fetch(url + "/list")
     .then((response) => {
         return response.json();
@@ -53,8 +59,8 @@ fetch(url + "/list")
 <th id="email">${users[i].email}</th>
 <th id="address">${users[i].address}</th>
  
-<button id="delete-btn" type="button" class="btn btn-outline-danger"  onclick="del(${users[i].id})">Delete</button> 
-<button id="myBtn" type="button" class="btn btn-outline-primary" onclick="update(${users[i].id},'${users[i].name}','${users[i].email}','${users[i].address}')">Edit</button>
+<button type="button" class="btn btn-outline-danger"  onclick="del(${users[i].id}, '${users[i].name}','${users[i].email}','${users[i].address}')">Delete</button> 
+<button type="button" class="btn btn-outline-primary" onclick="update(${users[i].id},'${users[i].name}','${users[i].email}','${users[i].address}')">Edit</button>
  </tr>
 `
             userTable.append(forButton);
@@ -78,22 +84,6 @@ addUserForm.addEventListener("submit", (event) => {
 });
 
 
-function del(id)//Любая функция
-{
-    if (confirm('Удалить?'))
-        /*функция со всплывающим окном
-        с выбором действий "ок" или "отмена"*/
-    {
-        if (confirm('Вы уверены? Удалить?')) {
-            fetch(url + "/delete/" + id, {
-                method: "DELETE",
-            })
-                .then((response) => {
-                    location.reload()
-                })
-        }
-    }
-};
 
 // Получить модальный
 let modal = document.getElementById("myModal");
@@ -143,4 +133,48 @@ function update(id, name, email, address) {
 
     });
 };
+
+
+// Получить модальный
+let deleteModal = document.getElementById("deleteModal");
+
+// Получить кнопку, которая открывает модальный
+let deleteButton = document.getElementById("delete-btn");
+
+
+// Получить элемент <span>, который закрывает модальный
+let span3 = document.getElementsByClassName("close")[2];
+span3.onclick = function () {
+    deleteModal.style.display = "none";
+};
+cancelSubmit.onclick = function () {
+    deleteModal.style.display = "none";
+};
+
+// Когда пользователь щелкает в любом месте за пределами модального, закройте его
+window.onclick = function (event) {
+    if (event.target == deleteModal) {
+        deleteModal.style.display = "none";
+    }
+};
+
+
+function del(id, name, email, address){
+    inputNameD.value = name;
+    inputEmailD.value = email;
+    inputAddressD.value = address;
+    deleteModal.style.display = "block";
+
+
+    deleteForm.addEventListener("click", (event) => {
+    fetch(url + "/delete/" + id, {
+                method: "DELETE",
+            })
+                .then((response) => response.json())
+
+
+    })
+};
+
+
 
