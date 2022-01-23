@@ -15,7 +15,7 @@
 <header class="header" id="header">
     <div class="header_toggle"><i class='bx bx-menu' id="header-toggle"></i></div>
     <div>
-        <button style="float:right" type="button" class="btn btn-secondary"> log out</button>
+        <a href="/logout"><button style="float:right" type="button" class="btn btn-secondary"> log out</button> </a>
 
     </div>
 
@@ -49,6 +49,11 @@
                 <form id="editForm">
                     <div id="titleModal" class="p-3 mb-2  bg-success text-white">Edit User</div>
                     <div class="mb-3">
+
+                        <input type="userId" readonly class="form-control" id="inputId" placeholder="Id" >
+                    </div>
+                    <div class="mb-3">
+
                         <input type="text" class="form-control" id="inputName" placeholder="Name">
                     </div>
                     <div class="mb-3">
@@ -103,16 +108,17 @@
                 <form id="deleteForm">
                     <div  class="p-3 mb-2  bg-secondary text-white">User Detail </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="inputName1" placeholder="Name">
+                        <label for="inputName1"  class="form-label">Name</label>
+                        <input type="text" readonly class ="form-control" id="inputName1" placeholder="Name">
                     </div>
                     <div class="mb-3">
-                        <label for="inputEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp"
+                        <label for="inputEmail"  class="form-label">Email address</label>
+                        <input type="email" readonly class="form-control" id="inputEmail1" aria-describedby="emailHelp"
                                placeholder="email">
-                        <div id="emailHelp1" class="form-text">We'll never share your email with anyone else.</div>
+                        <div id="emailHelp1" readonly class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="inputAddress1" placeholder="Address">
+                        <input type="text" readonly class="form-control" id="inputAddress1" placeholder="Address">
                     </div>
                     <button id="deleteSubmit" type="submit" class="btn btn-primary">Delete</button>
                 </form>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class UserServiceImplim implements UserService {
     private final UserRepository userRepository;
@@ -31,7 +32,6 @@ public class UserServiceImplim implements UserService {
     @Override
     public void deleteById(long id) {
         userRepository.deleteById(id);
-
     }
 
     @Override
@@ -40,8 +40,8 @@ public class UserServiceImplim implements UserService {
     }
 
     @Override
-    public User getUserByUserName(String s) {
-        return null;
+    public User getUserByUserName(String name) {
+        return userRepository.findByUsername(name);
     }
 
     @Override
@@ -59,10 +59,20 @@ public class UserServiceImplim implements UserService {
             if (user.getEmail() != null) {
                 item.setEmail(user.getEmail());
             }
-
             userRepository.save(item);
         }
     }
+
+    @Override
+    public User findByUsername(String name) {
+        return userRepository.findByUsername(name);
+    }
+
+
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    } 
+
+
 }
-
-

@@ -1,4 +1,23 @@
-// Получить модальный
+
+let userInfo = document.getElementById("userInfo");
+let forTable = document.createElement("tbody");
+fetch("http://localhost:7712/user")
+    .then((response) => {
+        return response.json();
+    })
+    .then((user) => {
+        forTable.innerHTML = ` <tr>
+            <th>${user.id}</th>
+            <th>${user.name}</th>
+            <th>${user.email}</th>
+            <th>${user.address}</th>
+            </tr>
+            `;
+
+        userInfo.append(forTable);
+    });
+
+
 let addModal = document.getElementById("addUserModal");
 
 // Получить кнопку, которая открывает модальный
@@ -7,7 +26,6 @@ let btn2 = document.getElementById("myBtn2");
 // Получить элемент <span>, который закрывает модальный
 let span2 = document.getElementsByClassName("close")[1];
 
-// Когда пользователь нажимает на кнопку, откройте модальный
 btn2.onclick = function () {
     addModal.style.display = "block";
 }
@@ -46,7 +64,7 @@ let inputAddressD = document.getElementById("inputAddress1");
 let inputEmailD = document.getElementById("inputEmail1");
 
 
-fetch(url + "/list")
+fetch(url + "/admin/list")
     .then((response) => {
         return response.json();
     })
@@ -66,8 +84,9 @@ fetch(url + "/list")
             userTable.append(forButton);
         }
     });
+
 addUserForm.addEventListener("submit", (event) => {
-    fetch(url + "/add", {
+    fetch(url + "/admin/add", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -117,7 +136,7 @@ function update(id, name, email, address) {
     modal.style.display = "block";
 
     editUserForm.addEventListener("submit", (e) => {
-        fetch('http://localhost:7712/edit/', {
+        fetch('http://localhost:7712/admin/edit/', {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -167,7 +186,7 @@ function del(id, name, email, address){
 
 
     deleteForm.addEventListener("click", (event) => {
-    fetch(url + "/delete/" + id, {
+    fetch(url + "/admin/delete/" + id, {
                 method: "DELETE",
             })
                 .then((response) => response.json())
@@ -175,6 +194,10 @@ function del(id, name, email, address){
 
     })
 };
+
+
+
+
 
 
 

@@ -4,19 +4,19 @@ import com.example.restA.model.Role;
 import com.example.restA.model.User;
 import com.example.restA.service.RoleService;
 import com.example.restA.service.UserService;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
 import java.util.*;
 
 @RestController
 @CrossOrigin
-public class HomeController {
+public class RestContr {
     private final UserService userService;
     private final RoleService roleService;
 
-    public HomeController(UserService userService, RoleService roleService) {
+    public RestContr(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -33,8 +33,6 @@ public class HomeController {
             user1.setId(u.getId());
             users.add(user1);
         }
-
-
         return users;
     }
 
@@ -51,6 +49,21 @@ public class HomeController {
         userService.deleteById(id);
     }
 
+//    @CrossOrigin
+//    @PutMapping ("admin/edit")
+//    public ResponseEntity<User> updateUser(@RequestBody User user) {
+//        try {
+//            Set<Role> roles = new HashSet<>();
+//            roles.add(roleService.getRoleByName("ROLE_USER"));
+//            user.setRoles(roles);
+//            return new ResponseEntity<>(
+//                    userService.saveUser(user), HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+@CrossOrigin
     @PutMapping("admin/edit")
     public void update(@RequestBody User user) {
         Set<Role> roles = new HashSet<>();

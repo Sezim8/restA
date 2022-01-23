@@ -4,7 +4,7 @@ Accept: application/json
 ###
 
 ###
-POST http://localhost:7712/add/
+POST http://localhost:7712/admin/add/
 Content-Type: application/json
 
 { "name": "Ulan",
@@ -17,10 +17,10 @@ Content-Type: application/json
 PUT http://localhost:7712/edit/
 Content-Type: application/json
 
-{ "id": 45,
+{ "id": 24,
   "name": "uu",
   "address": "111sss",
-  "email": "eeeeeeeeeeee@gmail.com"
+  "email": "sdsd@gmail.com"
 }
 
 ###
